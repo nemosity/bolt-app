@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
 
-export const storesSelector = state => state.stores.stores;
-export const selectedStoreSelector = state => state.stores.selectedStore;
-export const selectedItemSelector = state => state.builder.selectedItem;
-export const itemsSelector = state => state.builder.items;
+export const storesSelector = (state) => state.stores.stores;
+export const selectedStoreSelector = (state) => state.stores.selectedStore;
+export const selectedItemSelector = (state) => state.builder.selectedItem;
+export const itemsSelector = (state) => state.builder.items;
 
 export const storeSelector = createSelector(
   storesSelector,
@@ -14,7 +14,7 @@ export const storeSelector = createSelector(
 
 export const storeMenuSelector = createSelector(
   storeSelector,
-  store => store.menu,
+  (store) => store.menu,
 );
 
 export const itemSelector = createSelector(
@@ -38,8 +38,12 @@ export const itemTotalSelector = createSelector(
       return null;
     }
     return item.options.reduce((accumulator, option) => {
-      if (variations && variations[option._id]) { // eslint-disable-line no-underscore-dangle
-        return accumulator + _.find(option.variations, ['_id', variations[option._id]]).price; // eslint-disable-line no-underscore-dangle
+      if (variations && variations[option._id]) {
+        // eslint-disable-line no-underscore-dangle
+        return (
+          accumulator +
+          _.find(option.variations, ['_id', variations[option._id]]).price
+        ); // eslint-disable-line no-underscore-dangle
       }
       return accumulator;
     }, item.price);
@@ -53,7 +57,10 @@ export const itemValidatorSelector = createSelector(
     if (!item) {
       return null;
     }
-    return item.options
-    .reduce((accumulator, option) => !!(accumulator && variations && variations[option._id]), true); // eslint-disable-line no-underscore-dangle, max-len
+    return item.options.reduce(
+      (accumulator, option) =>
+        !!(accumulator && variations && variations[option._id]),
+      true,
+    ); // eslint-disable-line no-underscore-dangle, max-len
   },
 );

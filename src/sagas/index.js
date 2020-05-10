@@ -8,7 +8,7 @@ import {
   STORES_REQUEST,
   STORES_RESPONSE,
 } from '../actions';
-import { navigate } from '../navigation';
+import { navigate } from '../navigation/utils';
 
 function* doLogin(action) {
   try {
@@ -17,7 +17,7 @@ function* doLogin(action) {
   } catch {
     yield put({ type: LOGIN_RESPONSE, payload: null, error: true });
   }
-  navigate('Home');
+  //navigate('Home');
 }
 
 function* doAutoLogin() {

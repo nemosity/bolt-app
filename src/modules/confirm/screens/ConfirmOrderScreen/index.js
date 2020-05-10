@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StatusBar,
-  ScrollView,
-} from 'react-native';
+import { StatusBar, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -11,7 +8,6 @@ import styles from './styles';
 import { itemSelector, itemTotalSelector } from '../../../../selectors';
 
 class ConfirmOrderScreen extends Component {
-
   static navigationOptions = ({ navigation }) => ({
     title: navigation.state.params.title,
   });
@@ -34,7 +30,7 @@ ConfirmOrderScreen.propTypes = {
   itemTotal: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   item: itemSelector(state),
   itemTotal: itemTotalSelector(state),
 });

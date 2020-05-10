@@ -1,6 +1,4 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,14 +7,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import LoginScreen from '../modules/login/containers/LoginScreen';
 
-import HomeScreen from '../modules/home/containers/HomeScreen';
-import StoreScreen from '../modules/store/containers/StoreScreen';
-
-import OrdersScreen from '../modules/orders/containers/OrdersScreen';
-import ProfileScreen from '../modules/profile/containers/ProfileScreen';
-
-//import StoreScreen from '../modules/store/containers/StoreScreen';
-//import ConfirmOrderScreen from '../modules/confirm/containers/ConfirmOrderScreen';
+import HomeScreen from '../modules/home/screens/HomeScreen';
+import StoreScreen from '../modules/store/screens/StoreScreen';
+import OrdersScreen from '../modules/orders/screens/OrdersScreen';
+import ProfileScreen from '../modules/profile/screens/ProfileScreen';
+import ConfirmOrderScreen from '../modules/confirm/screens/ConfirmOrderScreen';
 
 import { primaryColor } from '../styles/common';
 
@@ -37,6 +32,7 @@ const Home = () => (
       name="StoreDetail"
       component={StoreScreen}
     />
+    <Stack.Screen name="Confirm" component={ConfirmOrderScreen} />
   </Stack.Navigator>
 );
 

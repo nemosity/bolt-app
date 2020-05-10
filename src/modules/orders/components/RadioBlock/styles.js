@@ -10,13 +10,12 @@ import {
 export default StyleSheet.create({
   containerOuter: {
     padding: 5,
-    marginBottom: 40,
   },
   variations: {
     margin: 5,
-    flex: 1,
+    //flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
   },
   container: {
     padding: 1,
@@ -46,12 +45,14 @@ export default StyleSheet.create({
     ...text,
     padding: 0,
     opacity: 1,
+    textAlign: 'center',
   },
   selectedText: {
     ...text,
     padding: 0,
     opacity: 1,
     color: 'white',
+    textAlign: 'center',
   },
   priceContainer: {
     height: 20,

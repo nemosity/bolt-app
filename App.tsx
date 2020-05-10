@@ -12,7 +12,7 @@ import React from 'react';
 import { Platform, UIManager } from 'react-native';
 import { Provider } from 'react-redux';
 
-import AppNavigator from './src/navigators/AppNavigator';
+import AppNavigator from './src/navigation/AppNavigator';
 import store from './src/store';
 
 declare var global: { HermesInternal: null | {} };
