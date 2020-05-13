@@ -8,6 +8,8 @@ export default ({ navigation }) => (
   <ScrollView style={styles.container}>
     <StatusBar barStyle="dark-content" />
     <Text style={styles.heading}>{'Good morning,\nJoe ☀️\n'}</Text>
+    <Text style={styles.subheading}>NOW BREWING</Text>
+    <NearbyStores navigation={navigation} />
     <Text style={styles.subheading}>NEARBY STORES</Text>
     <NearbyStores navigation={navigation} />
   </ScrollView>

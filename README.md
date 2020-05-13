@@ -1,4 +1,7 @@
 ## bolt-app
+
+A POC Mobile Coffee Ordering App powered by [react-formulate](https://github.com/nemosity/react-formulate)
+
 ---
 ### Getting started
 
@@ -7,3 +10,5 @@
 `npx pod install` (for react-navigation libraries)
 
 `yarn ios`
+
+![](bolt-app-demo.gif)

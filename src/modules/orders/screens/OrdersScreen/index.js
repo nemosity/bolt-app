@@ -1,39 +1,9 @@
-import React, { Component } from 'react';
-import { View, Text, TextInput, TouchableHighlight } from 'react-native';
-import { connect } from 'react-redux';
+import React from 'react';
+import { ScrollView, Text } from 'react-native';
 import RecentOrders from '../../components/RecentOrders';
 import styles from './styles';
 import { StatefulDynamicForm } from '@nemosity/react-formulate';
-import RadioBlock from '../../components/RadioBlock';
-import ItemToggle from '../../components/ItemToggle';
-
-const widgets = {
-  Input: (props) => (
-    <View>
-      <Text>{props.label}</Text>
-      <TextInput
-        value={props.value}
-        style={styles.input}
-        placeholder={props.placeholder}
-        onChangeText={props.onChange}
-        multiline={true}
-        numberOfLines={4}
-      />
-      {props.error && <Text>{props.error}</Text>}
-    </View>
-  ),
-  Header: Text,
-  Button: () => (
-    <TouchableHighlight
-      style={styles.button}
-      onPress={() => {}}
-      underlayColor={'#fff'}>
-      <Text style={styles.buttonText}>Submit</Text>
-    </TouchableHighlight>
-  ),
-  Radio: RadioBlock,
-  ItemToggle: ItemToggle,
-};
+import widgets from '../../../builder/widgets';
 
 const schema = [
   {
@@ -219,48 +189,18 @@ const schemaTwo = [
     label: 'Note',
   },
 ];
-class OrdersScreen extends Component {
-  static navigationOptions = {
-    headerStyle: {
-      position: 'absolute',
-      backgroundColor: 'transparent',
-      zIndex: 100,
-      top: 0,
-      left: 0,
-      right: 0,
-    },
-    headerTintColor: 'white',
-  };
+const OrdersScreen = () => {
+  return (
+    <ScrollView style={styles.container}>
+      <Text style={styles.heading}>RECENT ORDERS</Text>
+      <RecentOrders />
+      <StatefulDynamicForm
+        widgets={widgets}
+        schema={schemaTwo}
+        onSubmit={() => {}}
+      />
+    </ScrollView>
+  );
+};
 
-  constructor(props) {
-    super(props);
-    this.selectBuyButton = this.selectBuyButton.bind(this);
-  }
-
-  selectBuyButton() {
-    const { storeID, itemID, variations } = this.props;
-    this.props.prepareForPayment(storeID, itemID, variations);
-  }
-
-  // TODO Refactor components
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.heading}>RECENT ORDERS</Text>
-        <RecentOrders />
-        <StatefulDynamicForm
-          widgets={widgets}
-          schema={schemaTwo}
-          onSubmit={() => {}}
-        />
-      </View>
-    );
-  }
-}
-
-OrdersScreen.propTypes = {};
-
-const mapStateToProps = (state) => ({});
-
-export default connect(mapStateToProps)(OrdersScreen);
+export default OrdersScreen;

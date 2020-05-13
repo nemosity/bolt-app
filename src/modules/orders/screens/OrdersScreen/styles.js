@@ -28,21 +28,4 @@ export default StyleSheet.create({
     width: 'auto',
     height: 60,
   },
-  button: {
-    height: 50,
-    backgroundColor: secondaryColor,
-    alignSelf: 'stretch',
-    marginTop: 60,
-    justifyContent: 'center',
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: secondaryColor,
-    width: 250,
-  },
-  buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
-    textAlign: 'center',
-  },
 });

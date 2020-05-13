@@ -11,6 +11,7 @@ import HomeScreen from '../modules/home/screens/HomeScreen';
 import StoreScreen from '../modules/store/screens/StoreScreen';
 import OrdersScreen from '../modules/orders/screens/OrdersScreen';
 import ProfileScreen from '../modules/profile/screens/ProfileScreen';
+import BuilderScreen from '../modules/builder/screens/BuilderScreen';
 import ConfirmOrderScreen from '../modules/confirm/screens/ConfirmOrderScreen';
 
 import { primaryColor } from '../styles/common';
@@ -31,6 +32,17 @@ const Home = () => (
       }}
       name="StoreDetail"
       component={StoreScreen}
+    />
+    <Stack.Screen
+      options={{
+        headerTintColor: 'black',
+        headerShown: true,
+        headerTransparent: true,
+        title: null,
+        headerBackTitle: 'Back',
+      }}
+      name="Builder"
+      component={BuilderScreen}
     />
     <Stack.Screen name="Confirm" component={ConfirmOrderScreen} />
   </Stack.Navigator>

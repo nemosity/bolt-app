@@ -84,7 +84,7 @@ class StoreScreen extends Component {
             <View key={menuItem._id}>
               <MenuItem
                 id={menuItem._id}
-                onPressItem={this.props.selectItem}
+                onPressItem={() => this.props.navigation.navigate('Builder')}
                 title={menuItem.title}
                 price={menuItem.price}
               />
