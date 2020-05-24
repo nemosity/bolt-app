@@ -47,13 +47,13 @@ const RadioBlock = (props) => {
   return (
     <View style={styles.containerOuter}>
       <Text style={styles.label}>{props.label}</Text>
-      {mappedOptions.map((row) => (
-        <View style={styles.variations}>
-          {row.map((option, index) => (
+      {mappedOptions.map((row, index) => (
+        <View style={styles.variations} key={index}>
+          {row.map((option, optionIndex) => (
             <Option
-              index={index}
+              index={optionIndex}
               value={option.value}
-              key={index}
+              key={optionIndex}
               label={option.label}
               selected={props.value === option.value}
               onPress={props.onChange}
@@ -62,6 +62,7 @@ const RadioBlock = (props) => {
           ))}
         </View>
       ))}
+      {props.error && <Text style={styles.error}>{props.error}</Text>}
     </View>
   );
 };

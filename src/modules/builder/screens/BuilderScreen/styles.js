@@ -30,4 +30,7 @@ export default StyleSheet.create({
     width: 'auto',
     height: 60,
   },
+  content: {
+    marginBottom: 100,
+  },
 });

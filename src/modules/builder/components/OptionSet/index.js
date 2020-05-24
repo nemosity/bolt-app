@@ -11,7 +11,7 @@ import { selectedItemVariationsSelector } from '../../../../selectors';
 const OptionSet = (props) => (
   <View style={styles.container}>
     <View style={styles.variations}>
-      {props.variations.map((variation) => (
+      {/* {props.variations?.map((variation) => (
         <Variation
           variation={variation}
           optionID={props.optionID}
@@ -24,7 +24,7 @@ const OptionSet = (props) => (
           }
           selectVariation={props.selectVariation}
         />
-      ))}
+      ))} */}
     </View>
   </View>
 );

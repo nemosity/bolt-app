@@ -1,18 +1,14 @@
 import React from 'react';
-import {
-  Text,
-  TouchableHighlight,
-} from 'react-native';
+import { Text, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const BuyButton = props => (
+const BuyButton = (props) => (
   <TouchableHighlight
     onPress={() => props.onPress()}
-    style={props.disabled ? styles.disabledContainer : styles.container}
-  >
-    <Text style={styles.text}>Place Order</Text>
+    style={props.disabled ? styles.disabledContainer : styles.container}>
+    <Text style={styles.text}>Checkout</Text>
   </TouchableHighlight>
 );
 

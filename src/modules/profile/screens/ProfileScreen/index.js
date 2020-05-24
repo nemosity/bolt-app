@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Text, View, StatusBar, Image, TouchableHighlight } from 'react-native';
+import { Text, View, StatusBar, Image, TouchableOpacity } from 'react-native';
 
 import Separator from '../../../../common/components/Separator';
 
@@ -34,9 +34,11 @@ class ProfileScreen extends Component {
         <Separator />
         <Text style={styles.text}>Give us feedback</Text>
         <Separator />
-        <TouchableHighlight onPress={() => this.props.logout()}>
+        <TouchableOpacity
+          style={styles.rowButton}
+          onPress={() => this.props.logout()}>
           <Text style={styles.text}>Logout</Text>
-        </TouchableHighlight>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -48,8 +50,8 @@ ProfileScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  name: state.auth.user.name,
-  image: state.auth.user.image,
+  name: state.auth?.user?.name,
+  image: state.auth?.user?.image,
 });
 
 export default connect(mapStateToProps, { logout })(ProfileScreen);

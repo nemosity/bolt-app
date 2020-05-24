@@ -5,33 +5,57 @@ import {
   LOGIN_REQUEST,
   LOGIN_AUTO_REQUEST,
   LOGIN_RESPONSE,
+  LOGOUT,
   STORES_REQUEST,
   STORES_RESPONSE,
+  SELECT_ITEM,
+  ADD_ITEM,
 } from '../actions';
 import { navigate } from '../navigation/utils';
 
-function* doLogin(action) {
+// Authentication sagas
+
+function* login(action) {
   try {
     const userData = yield call(AuthService.login, action.payload);
     yield put({ type: LOGIN_RESPONSE, payload: userData });
-  } catch {
+  } catch (e) {
+    console.log(e);
     yield put({ type: LOGIN_RESPONSE, payload: null, error: true });
   }
-  //navigate('Home');
 }
 
-function* doAutoLogin() {
+function* watchLogin() {
+  yield takeEvery(LOGIN_REQUEST, login);
+}
+
+function* autoLogin() {
   try {
     const isLoggedIn = yield call(AuthService.isUserAuthenticated);
     if (isLoggedIn) {
-      navigate('Home');
+      const userData = yield call(AuthService.getUserData);
+      yield put({ type: LOGIN_RESPONSE, payload: userData });
     }
   } catch {
     yield put({ type: LOGIN_RESPONSE, payload: null, error: true });
   }
 }
 
-function* doStoresRequest() {
+function* watchAutoLogin() {
+  yield takeEvery(LOGIN_AUTO_REQUEST, autoLogin);
+}
+
+function* logout() {
+  yield call(AuthService.deauthenticateUser);
+}
+
+function* watchLogout() {
+  yield takeEvery(LOGOUT, logout);
+}
+
+// Stores sagas
+
+function* loadStores() {
   try {
     const stores = yield call(StoreService.getStores);
     if (stores) {
@@ -42,18 +66,37 @@ function* doStoresRequest() {
   }
 }
 
-function* loginAsync() {
-  yield takeEvery(LOGIN_REQUEST, doLogin);
+function* watchLoadStores() {
+  yield takeEvery(STORES_REQUEST, loadStores);
 }
 
-function* loginAutoAsync() {
-  yield takeEvery(LOGIN_AUTO_REQUEST, doAutoLogin);
+// Navigation sagas
+
+function* navigateToBuilderScreen() {
+  // Navigate to builder screen to customise item
+  navigate('Builder');
 }
 
-function* storesRequest() {
-  yield takeEvery(STORES_REQUEST, doStoresRequest);
+function* watchSelectItem() {
+  yield takeEvery(SELECT_ITEM, navigateToBuilderScreen);
+}
+
+function* navigateToStoreScreen() {
+  // Navigate back to store after adding item
+  navigate('StoreDetail');
+}
+
+function* watchAddItem() {
+  yield takeEvery(ADD_ITEM, navigateToStoreScreen);
 }
 
 export default function* rootSaga() {
-  yield all([loginAsync(), loginAutoAsync(), storesRequest()]);
+  yield all([
+    watchLogin(),
+    watchAutoLogin(),
+    watchLogout(),
+    watchLoadStores(),
+    watchSelectItem(),
+    watchAddItem(),
+  ]);
 }

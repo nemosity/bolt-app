@@ -2,12 +2,12 @@ import React from 'react';
 import { Text, TouchableHighlight } from 'react-native';
 import styles from './styles';
 
-const Button = () => (
+const Button = (props) => (
   <TouchableHighlight
     style={styles.button}
-    onPress={() => {}}
+    onPress={() => props.onClick()}
     underlayColor={'#fff'}>
-    <Text style={styles.buttonText}>Add to order</Text>
+    <Text style={styles.buttonText}>Add to Cart</Text>
   </TouchableHighlight>
 );
 

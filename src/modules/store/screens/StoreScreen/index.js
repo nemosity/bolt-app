@@ -24,6 +24,8 @@ import {
   itemValidatorSelector,
   selectedStoreSelector,
   selectedItemVariationsSelector,
+  cartTotalSelector,
+  cartSelector,
 } from '../../../../selectors';
 import Separator from '../../../../common/components/Separator';
 import Builder from '../../../../modules/builder/containers/BuilderScreen';
@@ -80,15 +82,15 @@ class StoreScreen extends Component {
           <Separator />
           <Text style={styles.heading}>MENU</Text>
           {/* TODO Embed customise screen into the menu */}
-          {this.props.store.menu.map((menuItem) => (
+          {this.props.store.menu?.map((menuItem) => (
             <View key={menuItem._id}>
               <MenuItem
                 id={menuItem._id}
-                onPressItem={() => this.props.navigation.navigate('Builder')}
+                onPressItem={() => this.props.selectItem(menuItem._id)}
                 title={menuItem.title}
                 price={menuItem.price}
               />
-              {menuItem._id === this.props.selectedItem ? <Builder /> : null}
+              {/* {menuItem._id === this.props.selectedItem ? <Builder /> : null} */}
               <Separator />
             </View>
           ))}
@@ -98,11 +100,16 @@ class StoreScreen extends Component {
           <View style={styles.buyButton}>
             <View style={styles.buyButtonLeft}>
               <Text
-                style={styles.buyItemText}>{`${this.props.item.title}`}</Text>
-              <Text
-                style={styles.buyPriceText}>{`$${this.props.itemTotal.toFixed(
+                style={styles.buyPriceText}>{`$${this.props.cartTotal.toFixed(
                 2,
               )}`}</Text>
+              <Text style={styles.buyItemText}>
+                {this.props.items.length === 1
+                  ? this.props.store.menu.find(
+                      (x) => x._id === this.props.items[0]._id,
+                    ).title
+                  : `${this.props.items.length} items`}
+              </Text>
             </View>
             <BuyButton
               onPress={this.selectBuyButton}
@@ -129,12 +136,15 @@ StoreScreen.propTypes = {
 const mapStateToProps = (state) => ({
   store: storeSelector(state),
   selectedItem: selectedItemSelector(state),
-  itemTotal: itemTotalSelector(state),
-  valid: !!itemValidatorSelector(state),
+  //itemTotal: itemTotalSelector(state),
+  items: state.cart.items,
+  //valid: !!itemValidatorSelector(state),
+  valid: state.cart.items.length > 0,
   itemID: selectedItemSelector(state),
   storeID: selectedStoreSelector(state),
   variations: selectedItemVariationsSelector(state),
   item: itemSelector(state),
+  cartTotal: cartTotalSelector(state),
 });
 
 export default connect(mapStateToProps, { selectItem, prepareForPayment })(

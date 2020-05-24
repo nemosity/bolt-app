@@ -35,4 +35,7 @@ export default StyleSheet.create({
     right: 30,
     zIndex: 50,
   },
+  rowButton: {
+    backgroundColor: '#fff',
+  },
 });

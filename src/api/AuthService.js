@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import Config from '../config';
 
-export default class AuthService {
+class AuthService {
   static signUp(creds, cb) {
     return fetch(`${Config.SERVER_URL}/auth/signUp`, {
       method: 'POST',
@@ -82,3 +82,59 @@ export default class AuthService {
     );
   }
 }
+
+const DEFAULT_API_DELAY = 1000;
+const wait = (delay = DEFAULT_API_DELAY) =>
+  new Promise((resolve) => setTimeout(resolve, delay));
+
+class _MockAuthService {
+  constructor() {
+    this.login = this.login.bind(this);
+  }
+  // now returns a promise
+  async login() {
+    await wait();
+    const response = {
+      token:
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1OTAwZTEyZDI5NjljMzIyZTEwYTNhNjAiLCJpYXQiOjE1OTAyMDI4Mjh9.Xuvlrb6ZeP7FjwwKfdtGIS8R02cWR4WibEUweLkRLk4',
+      success: true,
+      message: 'You have successfully logged in!',
+      user: {
+        name: 'Joe',
+        email: 'new',
+        message: '',
+        image: 'https://www.dropbox.com/s/d1drrk0lab38s0c/joe.jpg?dl=1',
+      },
+    };
+    await this.authenticateUser(response);
+    return response;
+  }
+
+  async authenticateUser(userData) {
+    return AsyncStorage.setItem('@BoltStore:user', JSON.stringify(userData));
+  }
+
+  async isUserAuthenticated() {
+    return AsyncStorage.getItem('@BoltStore:user') !== null;
+  }
+
+  async deauthenticateUser() {
+    return AsyncStorage.removeItem('@BoltStore:user');
+  }
+
+  async getUserData() {
+    return AsyncStorage.getItem('@BoltStore:user').then((userString) =>
+      JSON.parse(userString),
+    );
+  }
+
+  async getToken() {
+    return AsyncStorage.getItem('@BoltStore:user').then(
+      (userString) => JSON.parse(userString).token,
+    );
+  }
+}
+
+const MockAuthService = new _MockAuthService();
+
+export default Config.USE_MOCKS ? MockAuthService : AuthService;

@@ -78,6 +78,6 @@ export default StyleSheet.create({
     ...text,
     color: primaryColor,
     alignSelf: 'center',
-    padding: 20,
+    padding: 40,
   },
 });

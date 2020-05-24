@@ -1,11 +1,14 @@
 import { createAction } from 'redux-actions';
-import AuthService from '../api/AuthService';
-import { LOGIN_REQUEST, LOGIN_AUTO_REQUEST, LOGIN_RESPONSE } from '../actions';
-import { navHomeScreen } from './navActions';
+import {
+  LOGIN_REQUEST,
+  LOGIN_AUTO_REQUEST,
+  LOGIN_RESPONSE,
+  LOGOUT,
+} from '../actions';
 
 // TODO: Migrate to redux actions
-
 export const loginRequest = createAction(LOGIN_REQUEST);
+export const logout = createAction(LOGOUT);
 
 export const loginSuccess = createAction(LOGIN_RESPONSE, (userData) => ({
   name: userData.user.name,
@@ -25,13 +28,6 @@ export const autoLoginFailure = () => ({
   payload: null,
   error: false,
 });
-
-export const logout = () => (dispatch) =>
-  AuthService.deauthenticateUser().finally(() => {
-    dispatch({
-      type: 'USER_LOGOUT',
-    });
-  });
 
 // export const login = (creds) => (dispatch) => {
 //   dispatch(loginRequest());

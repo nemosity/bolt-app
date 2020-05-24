@@ -7,6 +7,9 @@ import {
 } from '../../../../styles/common';
 
 export default StyleSheet.create({
+  containerOuter: {
+    paddingTop: 10,
+  },
   input: {
     margin: 10,
     fontSize: 18,

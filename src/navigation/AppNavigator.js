@@ -5,6 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+import { navigationRef } from './utils';
+
 import LoginScreen from '../modules/login/containers/LoginScreen';
 
 import HomeScreen from '../modules/home/screens/HomeScreen';
@@ -63,7 +65,7 @@ const Profile = () => (
 const AppNavigator = () => {
   const auth = useSelector((state) => state.auth);
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       {auth.token ? (
         <Tab.Navigator
           tabBarOptions={{
@@ -84,6 +86,7 @@ const AppNavigator = () => {
         </Tab.Navigator>
       ) : (
         <Stack.Navigator
+          mode="modal"
           screenOptions={{
             headerShown: false,
           }}>

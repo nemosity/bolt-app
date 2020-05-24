@@ -9,13 +9,13 @@ import {
 
 export default StyleSheet.create({
   containerOuter: {
-    padding: 5,
+    paddingTop: 10,
   },
   variations: {
     //margin: 5,
-    //flex: 1,
+    flex: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   container: {
     padding: 1,
@@ -80,7 +80,14 @@ export default StyleSheet.create({
   label: {
     ...heading,
     fontSize: 15,
-    // paddingTop: 5,
+    paddingBottom: 5,
     paddingLeft: 20,
+  },
+  error: {
+    ...text,
+    fontSize: 15,
+    paddingBottom: 5,
+    paddingLeft: 20,
+    color: primaryColor,
   },
 });

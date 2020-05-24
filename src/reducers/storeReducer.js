@@ -1,6 +1,11 @@
-import { STORES_REQUEST, STORES_RESPONSE, SELECT_STORE } from '../actions';
+import {
+  STORES_REQUEST,
+  STORES_RESPONSE,
+  SELECT_STORE,
+  LOGOUT,
+} from '../actions';
 
-const initialStoreState = {
+const initialState = {
   isFetching: false,
   error: null,
   stores: null,
@@ -8,8 +13,12 @@ const initialStoreState = {
 };
 
 // reducer function for stores
-export default function storeReducer(state = initialStoreState, action) {
+export default function storeReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT:
+      return {
+        ...initialState,
+      };
     case STORES_REQUEST:
       return { ...state, isFetching: true };
     case STORES_RESPONSE:

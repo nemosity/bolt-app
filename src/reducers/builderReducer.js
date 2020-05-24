@@ -1,13 +1,17 @@
-import { SELECT_ITEM, SELECT_VARIATION } from '../actions';
+import { SELECT_ITEM, SELECT_VARIATION, LOGOUT } from '../actions';
 
-const initialStoreState = {
+const initialState = {
   selectedItem: null,
   items: {},
 };
 
 // reducer function for stores
-export default function builderReducer(state = initialStoreState, action) {
+export default function builderReducer(state = initialState, action) {
   switch (action.type) {
+    case LOGOUT:
+      return {
+        ...initialState,
+      };
     case SELECT_ITEM:
       return { ...state, ...action.payload };
     case SELECT_VARIATION:
