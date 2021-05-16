@@ -26,6 +26,7 @@ import {
   selectedItemVariationsSelector,
   cartTotalSelector,
   cartSelector,
+  cartCountSelector,
 } from '../../../../selectors';
 import Separator from '../../../../common/components/Separator';
 import Builder from '../../../../modules/builder/containers/BuilderScreen';
@@ -82,7 +83,7 @@ class StoreScreen extends Component {
           <Separator />
           <Text style={styles.heading}>MENU</Text>
           {/* TODO Embed customise screen into the menu */}
-          {this.props.store.menu?.map((menuItem) => (
+          {this.props.store.menu?.map(menuItem => (
             <View key={menuItem._id}>
               <MenuItem
                 id={menuItem._id}
@@ -104,11 +105,11 @@ class StoreScreen extends Component {
                 2,
               )}`}</Text>
               <Text style={styles.buyItemText}>
-                {this.props.items.length === 1
+                {this.props.itemCount === 1
                   ? this.props.store.menu.find(
-                      (x) => x._id === this.props.items[0]._id,
+                      x => x._id === this.props.items[0]._id,
                     ).title
-                  : `${this.props.items.length} items`}
+                  : `${this.props.itemCount} items`}
               </Text>
             </View>
             <BuyButton
@@ -133,11 +134,12 @@ StoreScreen.propTypes = {
   selectItem: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   store: storeSelector(state),
   selectedItem: selectedItemSelector(state),
   //itemTotal: itemTotalSelector(state),
   items: state.cart.items,
+  itemCount: cartCountSelector(state),
   //valid: !!itemValidatorSelector(state),
   valid: state.cart.items.length > 0,
   itemID: selectedItemSelector(state),

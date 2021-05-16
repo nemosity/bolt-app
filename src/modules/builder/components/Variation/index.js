@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const Variation = (props) => (
+const Variation = props => (
   <TouchableHighlight
     onPress={() =>
       props.selectVariation(props.variation._id, props.optionID, props.itemID)

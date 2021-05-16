@@ -30,7 +30,7 @@ ConfirmOrderScreen.propTypes = {
   itemTotal: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   item: itemSelector(state),
   itemTotal: itemTotalSelector(state),
 });

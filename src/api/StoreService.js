@@ -4,7 +4,7 @@ import Config from '../config';
 class StoreService {
   static getStores() {
     return AuthService.getToken()
-      .then((token) =>
+      .then(token =>
         fetch(`${Config.SERVER_URL}/api/stores/`, {
           method: 'GET',
           headers: {
@@ -12,12 +12,12 @@ class StoreService {
           },
         }),
       )
-      .then((response) => response.json())
-      .then((json) => json);
+      .then(response => response.json())
+      .then(json => json);
   }
   static placePreflightOrder(storeID, itemID, options) {
     return AuthService.getToken()
-      .then((token) => {
+      .then(token => {
         const body = {
           store: storeID,
           items: [
@@ -38,13 +38,13 @@ class StoreService {
           body: JSON.stringify(body),
         });
       })
-      .then((response) => response);
+      .then(response => response);
   }
 }
 
 const DEFAULT_API_DELAY = 2000;
 const wait = (delay = DEFAULT_API_DELAY) =>
-  new Promise((resolve) => setTimeout(resolve, delay));
+  new Promise(resolve => setTimeout(resolve, delay));
 
 class _MockStoreService {
   constructor() {
@@ -100,6 +100,10 @@ class _MockStoreService {
                     value: 'double',
                   },
                   {
+                    label: 'Half',
+                    value: 'half',
+                  },
+                  {
                     label: 'Decaf',
                     value: 'decaf',
                   },
@@ -130,6 +134,14 @@ class _MockStoreService {
                   {
                     label: 'Coconut',
                     value: 'coconut',
+                  },
+                  {
+                    label: 'Soy',
+                    value: 'soy',
+                  },
+                  {
+                    label: 'Oat',
+                    value: 'oat',
                   },
                 ],
                 label: 'Milk',
@@ -424,6 +436,280 @@ class _MockStoreService {
           },
         ],
       },
+      {
+        _id: '5a0faecad832d9bbb6c1c99g',
+        __v: 0,
+        name: 'Showa Cafe',
+        location: 'West Tamaki Road',
+        image:
+          'https://lh5.googleusercontent.com/p/AF1QipNRtC0CAi1YsDrRSCJWVExQ04T1eB4hrBEn1XwI=s773-k-no',
+        //'https://lh3.ggpht.com/p/AF1QipPPGEZpBcChGoxeI46-bK03LOlCAVtPHu72UJ_C=s1024',
+        //'https://lh5.googleusercontent.com/p/AF1QipMAqxNO8DXOW2hj6GL58eLDdYuOdMFFvDFzxjvj=s1031-k-no',
+        menu: [
+          {
+            title: 'Donuts',
+            price: 4,
+            _id: '5a0faecad832d9bbb6c1c9a5',
+            options: [
+              {
+                id: 'type',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'Plain',
+                    value: 'plain',
+                  },
+                  {
+                    label: 'Cinnamon',
+                    value: 'cinnamon',
+                  },
+                  {
+                    label: 'Custard',
+                    value: 'custard',
+                  },
+                  {
+                    label: 'Raspberry',
+                    value: 'raspberry',
+                  },
+                  {
+                    label: 'Chocolate',
+                    value: 'chocolate',
+                  },
+                  {
+                    label: 'Cream',
+                    value: 'cream',
+                  },
+                ],
+                label: 'Flavour',
+                properties: {
+                  prices: {
+                    custard: '1',
+                    chocolate: '1',
+                  },
+                },
+              },
+              {
+                id: 'notes',
+                widget: 'Input',
+                placeholder: '',
+                label: 'Order notes',
+              },
+              {
+                id: 'quantity',
+                widget: 'Incrementer',
+                label: '',
+                minValue: 1,
+                maxValue: 10,
+              },
+            ],
+          },
+          {
+            title: 'Cappuccino',
+            price: 4.5,
+            _id: '5a0faecad832d9bbb6c1c9a6',
+            options: [
+              {
+                id: 'size',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'S (4oz)',
+                    value: 'small',
+                  },
+                  {
+                    label: 'M (6oz)',
+                    value: 'medium',
+                  },
+                  {
+                    label: 'L (8oz)',
+                    value: 'large',
+                  },
+                ],
+                label: 'Size',
+                properties: {
+                  prices: {
+                    medium: '0.5',
+                    large: '1',
+                  },
+                },
+              },
+              {
+                id: 'strength',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'Single',
+                    value: 'single',
+                  },
+                  {
+                    label: 'Double',
+                    value: 'double',
+                  },
+                  {
+                    label: 'Decaf',
+                    value: 'decaf',
+                  },
+                ],
+                label: 'Strength',
+                properties: {
+                  prices: {
+                    double: '0.5',
+                    decaf: '0.5',
+                  },
+                },
+                validation: {
+                  required: true,
+                },
+              },
+              {
+                id: 'milk',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'Full',
+                    value: 'full',
+                  },
+                  {
+                    label: 'Trim',
+                    value: 'trim',
+                  },
+                  {
+                    label: 'Soy',
+                    value: 'soy',
+                  },
+                ],
+                label: 'Milk',
+                properties: {
+                  prices: {
+                    soy: 1,
+                  },
+                },
+              },
+              {
+                id: 'topping',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'Chocolate',
+                    value: 'chocolate',
+                  },
+                  {
+                    label: 'Cinnamon',
+                    value: 'cinnamon',
+                  },
+                  {
+                    label: 'Both',
+                    value: 'both',
+                  },
+                ],
+                label: 'Topping',
+              },
+              {
+                id: 'notes',
+                widget: 'Input',
+                placeholder: 'E.g. extra hot',
+                label: 'Note',
+              },
+              {
+                id: 'quantity',
+                widget: 'Incrementer',
+                label: '',
+                minValue: 1,
+                maxValue: 10,
+              },
+            ],
+          },
+          {
+            options: [
+              {
+                id: 'size',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'S (4oz)',
+                    value: 'small',
+                  },
+                  {
+                    label: 'M (6oz)',
+                    value: 'medium',
+                  },
+                  {
+                    label: 'L (8oz)',
+                    value: 'large',
+                  },
+                ],
+                label: 'Size',
+                properties: {
+                  prices: {
+                    medium: '0.5',
+                    large: '1',
+                  },
+                },
+              },
+              {
+                id: 'strength',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'Single',
+                    value: 'single',
+                  },
+                  {
+                    label: 'Double',
+                    value: 'double',
+                  },
+                  {
+                    label: 'Decaf',
+                    value: 'decaf',
+                  },
+                ],
+                label: 'Strength',
+                properties: {
+                  prices: {
+                    double: '0.5',
+                    decaf: '0.5',
+                  },
+                },
+              },
+              {
+                id: 'sugars',
+                widget: 'Radio',
+                values: [
+                  {
+                    label: 'None',
+                    value: 'none',
+                  },
+                  {
+                    label: 'One',
+                    value: 'one',
+                  },
+                  {
+                    label: 'Two',
+                    value: 'two',
+                  },
+                ],
+                label: 'Sugars',
+              },
+              {
+                id: 'notes',
+                widget: 'Input',
+                placeholder: 'E.g. extra hot',
+                label: 'Special Instructions',
+              },
+              {
+                id: 'quantity',
+                widget: 'Incrementer',
+                label: '',
+                minValue: 1,
+                maxValue: 10,
+              },
+            ],
+            title: 'Long Black',
+            price: 3.5,
+            _id: '5a0faecad832d9bbb6c1c9a0',
+          },
+        ],
+      },
     ];
     this.getStores = this.getStores.bind(this);
   }
@@ -452,7 +738,7 @@ class _MockStoreService {
 
   static placePreflightOrder(storeID, itemID, options) {
     return AuthService.getToken()
-      .then((token) => {
+      .then(token => {
         const body = {
           store: storeID,
           items: [
@@ -473,7 +759,7 @@ class _MockStoreService {
           body: JSON.stringify(body),
         });
       })
-      .then((response) => response);
+      .then(response => response);
   }
 }
 

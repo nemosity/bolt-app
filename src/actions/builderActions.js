@@ -2,7 +2,7 @@ import StoreService from '../api/StoreService';
 import { SELECT_ITEM, SELECT_VARIATION } from '../actions';
 import { navConfirmOrderScreen } from './navActions';
 
-export const selectItem = (itemID) => ({
+export const selectItem = itemID => ({
   type: SELECT_ITEM,
   payload: {
     selectedItem: itemID,
@@ -30,18 +30,18 @@ const updateCart = (variationID, optionID, itemID) => ({
   },
 });
 
-export const viewItem = (itemID) => (dispatch) => {
+export const viewItem = itemID => dispatch => {
   return dispatch(selectItem(itemID));
 };
 
-export const prepareForPayment = (storeID, itemID, options) => (dispatch) => {
+export const prepareForPayment = (storeID, itemID, options) => dispatch => {
   // TODO state update and error handling
   const mappedOptions = [];
-  Object.keys(options).forEach((key) =>
+  Object.keys(options).forEach(key =>
     mappedOptions.push({ option: key, variation: options[key] }),
   );
   StoreService.placePreflightOrder(storeID, itemID, mappedOptions)
-    .catch((err) => console.log(err))
+    .catch(err => console.log(err))
     .then(dispatch(navConfirmOrderScreen()));
 };
 

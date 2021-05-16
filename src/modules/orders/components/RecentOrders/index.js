@@ -17,8 +17,7 @@ export default () => {
       <View style={[styles.order, i === orders.length - 1 && styles.lastChild]}>
         <Image
           source={{
-            uri:
-              'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
+            uri: 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260',
             cache: 'default',
           }}
           style={styles.photo}

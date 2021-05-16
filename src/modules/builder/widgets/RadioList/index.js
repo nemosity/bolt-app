@@ -12,6 +12,9 @@ const Option = props => (
     style={styles.layoutContainer}>
     <View
       style={[styles.container, props.selected && styles.selectedContainer]}>
+      <View style={styles.radioOuter}>
+        {props.selected ? <View style={styles.radioInner} /> : null}
+      </View>
       <Text style={[styles.text, props.selected && styles.selectedText]}>
         {props.label}
       </Text>

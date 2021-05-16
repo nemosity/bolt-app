@@ -8,7 +8,7 @@ import styles from './styles';
 import Variation from '../Variation';
 import { selectedItemVariationsSelector } from '../../../../selectors';
 
-const OptionSet = (props) => (
+const OptionSet = props => (
   <View style={styles.container}>
     <View style={styles.variations}>
       {/* {props.variations?.map((variation) => (
@@ -36,7 +36,7 @@ OptionSet.propTypes = {
   selectVariation: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   selections: selectedItemVariationsSelector(state),
 });
 

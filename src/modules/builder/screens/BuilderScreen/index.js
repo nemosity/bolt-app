@@ -17,7 +17,7 @@ const BuilderScreen = () => {
         <StatefulDynamicForm
           widgets={widgets}
           schema={options}
-          onSubmit={(data) => {
+          onSubmit={data => {
             dispatch(addItem({ _id, options: data }));
           }}
         />

@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {
   text,
   heading,
@@ -7,41 +7,44 @@ import {
   blockShadow,
 } from '../../../../styles/common';
 
-const ITEMS_PER_ROW = 4;
-const ITEMS_ROW_PADDING = 20;
-
 export default StyleSheet.create({
   containerOuter: {
-    paddingTop: 10,
+    paddingLeft: 20,
+    paddingBottom: 20,
   },
   variations: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    flexWrap: 'wrap',
-    paddingHorizontal: ITEMS_ROW_PADDING / 2,
+    //marginLeft: 20,
   },
   layoutContainer: {
-    width:
-      Dimensions.get('window').width / ITEMS_PER_ROW -
-      ITEMS_ROW_PADDING / ITEMS_PER_ROW,
-    alignItems: 'center',
+    flex: 1,
+    flexDirection: 'row',
   },
-  container: {
-    marginTop: 10,
-    marginBottom: 10,
-    height: 40,
-    width: 80,
-    borderColor: 'lightgray',
-    borderRadius: 8,
-    borderWidth: 1,
+  radioOuter: {
+    height: 30,
+    width: 30,
+    borderRadius: 15,
+    borderWidth: 2,
+    borderColor: primaryColor,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
+    marginRight: 10,
   },
-  selectedContainer: {
-    borderColor: primaryColor,
+  radioInner: {
+    height: 16,
+    width: 16,
+    borderRadius: 8,
     backgroundColor: primaryColor,
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'row',
+    //marginVertical: 10,
+    height: 50,
+    borderColor: 'lightgray',
+    borderBottomWidth: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    backgroundColor: 'white',
   },
   text: {
     ...text,
@@ -49,39 +52,33 @@ export default StyleSheet.create({
     opacity: 1,
     textAlign: 'center',
   },
-  selectedText: {
-    color: 'white',
-  },
   priceContainer: {
     height: 20,
     width: 35,
     borderColor: secondaryColor,
     borderRadius: 5,
     borderWidth: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    //alignItems: 'flex-end',
+    //justifyContent: 'flex-end',
     backgroundColor: secondaryColor,
-    position: 'absolute',
-    top: -11,
-    right: -8,
+    //position: 'absolute',
     ...blockShadow,
   },
   price: {
-    flex: 0,
-    bottom: 0,
+    //flex: 1,
+    //bottom: 0,
     fontSize: 12,
+    color: 'white',
   },
   label: {
     ...heading,
     fontSize: 15,
     paddingBottom: 5,
-    paddingLeft: 20,
   },
   error: {
     ...text,
     fontSize: 15,
     paddingBottom: 5,
-    paddingLeft: 20,
     color: primaryColor,
   },
 });

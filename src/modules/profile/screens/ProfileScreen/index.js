@@ -49,7 +49,7 @@ ProfileScreen.propTypes = {
   image: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   name: state.auth?.user?.name,
   image: state.auth?.user?.image,
 });

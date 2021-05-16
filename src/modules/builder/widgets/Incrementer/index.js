@@ -12,7 +12,7 @@ const decrement = (value, minValue = 0) => {
   return currentVal - 1 < minValue ? minValue : currentVal - 1;
 };
 
-const Incrementer = (props) => {
+const Incrementer = props => {
   if (!props.value) {
     props.onChange(props.defaultValue || props.minValue || 1);
   }

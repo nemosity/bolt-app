@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Config from '../config';
 
 class AuthService {
@@ -14,11 +14,11 @@ class AuthService {
         name: 'none',
       }),
     })
-      .then((result) => {
+      .then(result => {
         console.log(result);
         return cb({ success: true });
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(`login failed: ${error}`);
         return cb(
           Object.assign(error, { success: false, badCredentials: true }),
@@ -38,21 +38,21 @@ class AuthService {
         password: creds.password,
       }),
     })
-      .then((response) => {
+      .then(response => {
         const contentType = response.headers.get('content-type');
         if (contentType && contentType.indexOf('application/json') !== -1) {
           return response.json();
         }
         throw new Error('API returned invalid JSON obejct');
       })
-      .then((json) => {
+      .then(json => {
         if (json.success && json.token) {
           AuthService.authenticateUser({ ...json, token: json.token });
           return json;
         }
         throw new Error('Authentication with API failed');
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(`login failed: ${error}`);
         throw new Error(`login failed: ${error}`);
       });
@@ -71,21 +71,21 @@ class AuthService {
   }
 
   static getUserData() {
-    return AsyncStorage.getItem('@BoltStore:user').then((userString) =>
+    return AsyncStorage.getItem('@BoltStore:user').then(userString =>
       JSON.parse(userString),
     );
   }
 
   static getToken() {
     return AsyncStorage.getItem('@BoltStore:user').then(
-      (userString) => JSON.parse(userString).token,
+      userString => JSON.parse(userString).token,
     );
   }
 }
 
 const DEFAULT_API_DELAY = 1000;
 const wait = (delay = DEFAULT_API_DELAY) =>
-  new Promise((resolve) => setTimeout(resolve, delay));
+  new Promise(resolve => setTimeout(resolve, delay));
 
 class _MockAuthService {
   constructor() {
@@ -123,14 +123,14 @@ class _MockAuthService {
   }
 
   async getUserData() {
-    return AsyncStorage.getItem('@BoltStore:user').then((userString) =>
+    return AsyncStorage.getItem('@BoltStore:user').then(userString =>
       JSON.parse(userString),
     );
   }
 
   async getToken() {
     return AsyncStorage.getItem('@BoltStore:user').then(
-      (userString) => JSON.parse(userString).token,
+      userString => JSON.parse(userString).token,
     );
   }
 }

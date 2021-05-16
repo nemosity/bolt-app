@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const MenuItem = (props) => (
+const MenuItem = props => (
   <View style={styles.container}>
     <TouchableHighlight
       style={styles.button}

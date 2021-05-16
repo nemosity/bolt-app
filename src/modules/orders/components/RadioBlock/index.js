@@ -15,7 +15,7 @@ import styles from './styles';
   onPress,
   customProps
 }*/
-const Option = (props) => (
+const Option = props => (
   <TouchableHighlight
     onPress={() => {
       LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
@@ -39,7 +39,7 @@ const Option = (props) => (
   </TouchableHighlight>
 );
 
-const RadioBlock = (props) => {
+const RadioBlock = props => {
   const ROW_LENGTH = 3;
   const mappedOptions = [[]];
   props.values.map((value, index) => {
@@ -53,7 +53,7 @@ const RadioBlock = (props) => {
   return (
     <View style={styles.containerOuter}>
       <Text style={styles.label}>{props.label}</Text>
-      {mappedOptions.map((row) => (
+      {mappedOptions.map(row => (
         <View style={styles.variations}>
           {row.map((option, index) => (
             <Option

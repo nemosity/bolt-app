@@ -6,34 +6,34 @@ export const storesRequest = () => ({
   type: STORES_REQUEST,
 });
 
-export const storesSuccess = (stores) => ({
+export const storesSuccess = stores => ({
   type: STORES_RESPONSE,
   payload: {
     stores,
   },
 });
 
-export const storesFailure = (err) => ({
+export const storesFailure = err => ({
   type: STORES_RESPONSE,
   payload: err,
   error: true,
 });
 
-export const selectStore = (storeID) => ({
+export const selectStore = storeID => ({
   type: SELECT_STORE,
   payload: {
     selectedStore: storeID,
   },
 });
 
-export const loadStores = () => (dispatch) => {
+export const loadStores = () => dispatch => {
   dispatch(storesRequest());
   return StoreService.getStores()
-    .then((stores) => dispatch(storesSuccess(stores)))
-    .catch((err) => dispatch(storesFailure(err)));
+    .then(stores => dispatch(storesSuccess(stores)))
+    .catch(err => dispatch(storesFailure(err)));
 };
 
-export const viewStore = (storeID) => (dispatch) => {
+export const viewStore = storeID => dispatch => {
   dispatch(selectStore(storeID));
   return dispatch(navStoreScreen());
 };

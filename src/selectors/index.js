@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
 
-export const storesSelector = (state) => state.stores.stores;
-export const selectedStoreSelector = (state) => state.stores.selectedStore;
-export const selectedItemSelector = (state) => state.builder?.selectedItem;
-export const itemsSelector = (state) => state.builder.items;
-export const cartSelector = (state) => state.cart.items;
+export const storesSelector = state => state.stores.stores;
+export const selectedStoreSelector = state => state.stores.selectedStore;
+export const selectedItemSelector = state => state.builder?.selectedItem;
+export const itemsSelector = state => state.builder.items;
+export const cartSelector = state => state.cart.items;
 
 export const storeSelector = createSelector(
   storesSelector,
@@ -15,7 +15,7 @@ export const storeSelector = createSelector(
 
 export const storeMenuSelector = createSelector(
   storeSelector,
-  (store) => store.menu,
+  store => store.menu,
 );
 
 export const itemSelector = createSelector(
@@ -37,20 +37,30 @@ export const cartTotalSelector = createSelector(
     return cart.reduce((total, cartItem) => {
       const menuItem = _.find(menu, ['_id', cartItem._id]);
       if (cartItem.options) {
-        const itemTotal = Object.keys(cartItem.options).reduce((acc, key) => {
-          const optionPrices = _.find(menuItem.options, ['id', key])?.properties
-            ?.prices;
-          if (optionPrices?.[cartItem.options[key]]) {
-            return acc + parseFloat(optionPrices[cartItem.options[key]]);
-          }
-          return acc;
-        }, menuItem.price);
+        const itemTotal =
+          Object.keys(cartItem.options).reduce((acc, key) => {
+            const optionPrices = _.find(menuItem.options, ['id', key])
+              ?.properties?.prices;
+            if (optionPrices?.[cartItem.options[key]]) {
+              return acc + parseFloat(optionPrices[cartItem.options[key]]);
+            }
+            return acc;
+          }, menuItem.price) *
+          (cartItem.options?.quantity ? cartItem.options?.quantity : 1);
         return itemTotal + total;
       }
       return total + menuItem.price;
     }, 0);
   },
 );
+
+export const cartCountSelector = createSelector(cartSelector, cart => {
+  return cart.reduce(
+    (total, cartItem) =>
+      total + (cartItem.options?.quantity ? cartItem.options?.quantity : 1),
+    0,
+  );
+});
 
 // Deprecated
 export const dep_itemTotalSelector = createSelector(

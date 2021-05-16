@@ -26,7 +26,7 @@ class NearbyStores extends Component {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }
 
-  onPressStore = (id) => {
+  onPressStore = id => {
     this.props.selectStore(id);
     this.props.navigation.navigate('StoreDetail');
   };
@@ -35,7 +35,7 @@ class NearbyStores extends Component {
     if (this.props.stores) {
       return (
         <View style={styles.container}>
-          {this.props.stores.map((store) => (
+          {this.props.stores.map(store => (
             <View key={store._id}>
               <StoreTile
                 id={store._id}
@@ -44,7 +44,7 @@ class NearbyStores extends Component {
                 location={store.location}
                 image={store.image}
               />
-              <Separator />
+              {/* <Separator /> */}
             </View>
           ))}
         </View>
@@ -74,7 +74,7 @@ NearbyStores.defaultProps = {
   isFetching: false,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   isFetching: state?.stores?.isFetching,
   stores: state?.stores?.stores,
 });

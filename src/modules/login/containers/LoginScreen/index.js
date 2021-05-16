@@ -21,8 +21,8 @@ import styles, { underlayColor } from './styles';
 const LoginScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const isAuthenticating = useSelector((state) => state.auth.isAuthenticating);
-  const error = useSelector((state) => state.auth.error);
+  const isAuthenticating = useSelector(state => state.auth.isAuthenticating);
+  const error = useSelector(state => state.auth.error);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,13 +62,13 @@ const LoginScreen = () => {
               placeholder="Email"
               autoCapitalize="none"
               autoCorrect={false}
-              onChangeText={(text) => setEmail(text)}
+              onChangeText={text => setEmail(text)}
             />
             <TextInput
               style={styles.input}
               placeholder="Password"
               secureTextEntry
-              onChangeText={(text) => setPassword(text)}
+              onChangeText={text => setPassword(text)}
             />
             <TouchableHighlight
               style={styles.button}

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import styles from './styles';
 
-const StoreTile = (props) => (
+const StoreTile = props => (
   <View style={styles.container}>
     <TouchableHighlight
       underlayColor="none"
@@ -12,7 +12,7 @@ const StoreTile = (props) => (
       <View style={styles.row}>
         <Text style={styles.header}>{props.name}</Text>
         <Text style={styles.text}>{props.location}</Text>
-        <Text style={[styles.text, { color: '#7d7' }]}>Open now</Text>
+        <Text style={[styles.text]}>8:30am - 6:00pm</Text>
         <View style={styles.photoContainer}>
           <Image
             source={{ uri: `${props.image}`, cache: 'default' }}

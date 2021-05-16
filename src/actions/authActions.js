@@ -10,14 +10,14 @@ import {
 export const loginRequest = createAction(LOGIN_REQUEST);
 export const logout = createAction(LOGOUT);
 
-export const loginSuccess = createAction(LOGIN_RESPONSE, (userData) => ({
+export const loginSuccess = createAction(LOGIN_RESPONSE, userData => ({
   name: userData.user.name,
   email: userData.user.email,
   token: userData.token,
   image: userData.user.image,
 }));
 
-export const loginFailure = (err) => ({
+export const loginFailure = err => ({
   type: LOGIN_RESPONSE,
   payload: err,
   error: true,
@@ -49,7 +49,7 @@ export const autoLoginFailure = () => ({
 //     .catch(() => dispatch(autoLoginFailure()));
 // };
 
-export const login = (payload) => ({
+export const login = payload => ({
   type: LOGIN_REQUEST,
   payload: payload,
 });

@@ -63,7 +63,7 @@ const Profile = () => (
 );
 
 const AppNavigator = () => {
-  const auth = useSelector((state) => state.auth);
+  const auth = useSelector(state => state.auth);
   return (
     <NavigationContainer ref={navigationRef}>
       {auth.token ? (

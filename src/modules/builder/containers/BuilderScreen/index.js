@@ -34,7 +34,7 @@ class BuilderScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {this.props.item.options.map((option) => (
+        {this.props.item.options.map(option => (
           <View key={option._id} style={styles.option}>
             <Text style={styles.optionHeading}>{option.name}</Text>
             <OptionSet
@@ -61,7 +61,7 @@ BuilderScreen.propTypes = {
   prepareForPayment: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   itemID: selectedItemSelector(state),
   storeID: selectedStoreSelector(state),
   variations: selectedItemVariationsSelector(state),
