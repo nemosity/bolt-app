@@ -5,9 +5,7 @@ A POC Mobile Coffee Ordering App powered by [react-formulate](https://github.com
 ---
 ### Getting started
 
-`yarn`
-
-`npx pod install --project-directory=ios` (for react-navigation libraries)
+`yarn` (this will auto-install pods using the postinstall script)
 
 `yarn ios`
 
