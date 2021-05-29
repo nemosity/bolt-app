@@ -18,7 +18,7 @@ export const SELECT_VARIATION = 'builder/SELECT_VARIATION';
 export const ADD_ITEM = 'cart/ADD_ITEM';
 export const UPDATE_ITEM = 'cart/UPDATE_ITEM';
 export const REMOVE_ITEM = 'cart/REMOVE_ITEM';
-export const INITIALIZE_CART = 'cart/INITIALIZE_CART';
+export const VIEW_CART = 'cart/VIEW_CART';
 
 export const CREATE_ORDER_REQUEST = 'order/CREATE_ORDER_REQUEST';
 export const CREATE_ORDER_RESPONSE = 'order/CREATE_ORDER_RESPONSE';

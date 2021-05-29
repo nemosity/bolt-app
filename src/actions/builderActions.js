@@ -1,5 +1,5 @@
 import StoreService from '../api/StoreService';
-import { SELECT_ITEM, SELECT_VARIATION } from '../actions';
+import { SELECT_ITEM, SELECT_VARIATION, VIEW_CART } from '../actions';
 import { navConfirmOrderScreen } from './navActions';
 
 export const selectItem = itemID => ({
@@ -34,15 +34,23 @@ export const viewItem = itemID => dispatch => {
   return dispatch(selectItem(itemID));
 };
 
-export const prepareForPayment = (storeID, itemID, options) => dispatch => {
+export const prepareForPayment = (storeID, itemID, options) => {
   // TODO state update and error handling
-  const mappedOptions = [];
-  Object.keys(options).forEach(key =>
-    mappedOptions.push({ option: key, variation: options[key] }),
-  );
-  StoreService.placePreflightOrder(storeID, itemID, mappedOptions)
-    .catch(err => console.log(err))
-    .then(dispatch(navConfirmOrderScreen()));
+  // const mappedOptions = [];
+  // Object.keys(options).forEach(key =>
+  //   mappedOptions.push({ option: key, variation: options[key] }),
+  // );
+  // StoreService.placePreflightOrder(storeID, itemID, mappedOptions)
+  //   .catch(err => console.log(err))
+  //   .then(dispatch(navConfirmOrderScreen()));
+  return {
+    type: VIEW_CART,
+    // payload: {
+    //   storeID,
+    //   itemID,
+    //   mappedOptions,
+    // },
+  };
 };
 
 export const selectVariation = (variationID, optionID, itemID) => ({

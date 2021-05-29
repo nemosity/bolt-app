@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import styles from './styles';
 
-import { itemSelector, itemTotalSelector } from '../../../../selectors';
+import { cartTotalSelector, itemSelector } from '../../../../selectors';
 
 class ConfirmOrderScreen extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -32,7 +32,7 @@ ConfirmOrderScreen.propTypes = {
 
 const mapStateToProps = state => ({
   item: itemSelector(state),
-  itemTotal: itemTotalSelector(state),
+  itemTotal: cartTotalSelector(state),
 });
 
 export default connect(mapStateToProps)(ConfirmOrderScreen);

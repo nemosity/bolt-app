@@ -2,7 +2,7 @@ import {
   ADD_ITEM,
   UPDATE_ITEM,
   REMOVE_ITEM,
-  INITIALIZE_CART,
+  VIEW_CART,
   SELECT_STORE,
   LOGOUT,
 } from '../actions';
@@ -25,7 +25,7 @@ export default function cartReducer(state = initialState, action) {
         storeId: action.payload.selectedStore,
       };
     // not used yet
-    case INITIALIZE_CART:
+    case VIEW_CART:
       return {
         ...initialState,
         storeId: action.payload,
